@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            TextView tvResults = (TextView)findViewById(R.id.tvResponse);
+            TextView tvResults = findViewById(R.id.tvResponse);
+
 
             tvResults.setText(result);
             if (result == null){
@@ -64,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 pdLoading.setVisibility(View.INVISIBLE);
             }
                pdLoading.setVisibility(View.INVISIBLE);
+            ArrayList<Book> books = ApiUtils.getBooksFromJson(result);
+            String resultString = "";
+            for (Book book : books){
+                resultString = resultString + book.title + "\n" +
+                        book.publishedDate + "\n\n";
+
+            }
+            tvResults.setText(resultString);
 
         }
 
