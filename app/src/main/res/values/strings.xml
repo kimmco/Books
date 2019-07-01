@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Books</string>
+    <string name="display_error_message">Error loading books data from Google</string>
 </resources>
